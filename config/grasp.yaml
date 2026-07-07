@@ -1,0 +1,174 @@
+# ============================================
+# RDKX5-EyeHand-Grasp Configuration
+# ============================================
+
+# ----------------------------
+# Detector
+# ----------------------------
+detector:
+  backend: "rdk_bin"          # rdk_bin / ultralytics
+  model: "models/yolov8_640x640_nv12.bin"
+
+  target_classes:
+    - suitcase
+    - book
+    - laptop
+    - keyboard
+    - cell phone
+    - bottle
+    - cup
+
+  fallback: true
+  infer_imgsz: 640
+  confidence_threshold: 0.35
+
+# ----------------------------
+# Camera
+# ----------------------------
+camera:
+  color_topic: "/camera/color/image_raw"
+  depth_topic: "/camera/depth/image_raw"
+  camera_info_topic: "/camera/color/camera_info"
+
+  depth_patch_radius: 25
+
+# ----------------------------
+# Hand-Eye
+# ----------------------------
+handeye:
+
+  frame_id: "gripper_center"
+  child_frame: "camera_link"
+
+# ----------------------------
+# Robot
+# ----------------------------
+robot:
+
+  planning_group: "Alicia"
+
+  end_effector: "gripper_center"
+
+# ----------------------------
+# Initial Pose
+# ----------------------------
+home:
+
+  joint1: 0.0
+  joint2: 0.0
+  joint3: 0.0
+  joint4: 0.0
+
+  # -30 deg
+  joint5: -0.524
+
+  joint6: 0.0
+
+# ----------------------------
+# Workspace
+# ----------------------------
+workspace:
+
+  x_min: -0.70
+  x_max: 0.50
+
+  y_min: -0.60
+  y_max: 0.60
+
+  z_min: -0.40
+  z_max: 0.30
+
+# ----------------------------
+# Grasp
+# ----------------------------
+grasp:
+
+  pregrasp_z_offset: 0.12
+
+  grasp_z_offset: 0.01
+
+  lift_z_offset: 0.12
+
+  grasp_x_offset: 0.00
+
+  grasp_y_offset: 0.00
+
+# ----------------------------
+# Retry
+# ----------------------------
+retry:
+
+  enabled: true
+
+  count: 4
+
+  step_z: 0.01
+
+  max_offset: 0.06
+
+# ----------------------------
+# Gripper
+# ----------------------------
+gripper:
+
+  action: "/Gripper_controller/follow_joint_trajectory"
+
+  joint: "Gripper"
+
+  open_position: 0.0
+
+  close_position: 0.025
+
+  duration: 1.5
+
+  repeat: 3
+
+  repeat_interval: 0.4
+
+# ----------------------------
+# Display
+# ----------------------------
+display:
+
+  show_window: true
+
+  publish_debug_image: false
+
+  display_scale: 0.45
+
+  ui_hz: 15.0
+
+# ----------------------------
+# Runtime
+# ----------------------------
+runtime:
+
+  execute_motion: true
+
+  execute_full_grasp: true
+
+  run_once: false
+
+  track_after_motion: true
+
+  freeze_detection_during_motion: true
+
+# ----------------------------
+# Manual Control
+# ----------------------------
+manual:
+
+  enabled: true
+
+  grasp_key: "g"
+
+  release_key: "r"
+
+# ----------------------------
+# Cached Grasp Pose
+# ----------------------------
+release:
+
+  restore_cached_pose: true
+
+  return_home_after_release: true
