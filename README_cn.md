@@ -143,17 +143,29 @@ Coming Soon...
 ```
 RDKX5-EyeHand-Grasp
 │
-├── calibration/
-├── config/
-├── launch/
-├── models/
-├── scripts/
+├── calibration
+│   └── hand_eye_calibration_result.yaml
+│
+├── config
+│   └── grasp.yaml
+│
+├── launch
+│   ├── camera.launch.py
+│   ├── grasp.launch.py
+│   └── README.md
+│
+├── models
+│   ├── yolov8_640x640_nv12.bin
+│   └── README.md
+│
+├── scripts
 │   └── yolo_eyehand_pregrasp_node.py
-├── urdf/
-├── docs/
+│
+├── urdf
+│   └── Alicia-D.urdf
+│
 ├── README.md
-├── README_cn.md
-└── LICENSE
+└── README_cn.md
 ```
 
 ---
@@ -163,7 +175,7 @@ RDKX5-EyeHand-Grasp
 克隆仓库
 
 ```bash
-git clone https://github.com/yourname/RDKX5-EyeHand-Grasp.git
+git clone https://github.com/xzh060613/RDKX5-EyeHand-Grasp.git
 ```
 
 安装 ROS2 依赖
